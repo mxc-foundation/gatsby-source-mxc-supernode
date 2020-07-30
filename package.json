@@ -11,14 +11,11 @@
     "gatsby",
     "gatsby-plugin"
   ],
-  "author": "Jeff Stahlnecker <jeff@stahlnecker.me>",
+  "author": "MXC Foundation <hello@mxc.org>",
   "license": "0BSD",
   "dependencies": {
     "axios": "^0.19.2",
     "chalk": "^4.1.0",
     "node-fetch": "^2.6.0"
-  },
-  "publishConfig": {
-    "registry": "https://npm.pkg.github.com/"
   }
 }
