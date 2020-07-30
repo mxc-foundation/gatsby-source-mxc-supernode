@@ -1,52 +1,60 @@
-/**
- * Implement Gatsby's Node APIs in this file.
- *
- * See: https://www.gatsbyjs.org/docs/node-apis/
- */
-// You can delete this file if you're not using it
+const axios = require('axios')
+const chalk = require('chalk')
+const log = console.log
 
-/**
- * You can uncomment the following line to verify that
- * your plugin is being loaded in your site.
- *
- * See: https://www.gatsbyjs.org/docs/creating-a-local-plugin/#developing-a-local-plugin-that-is-outside-your-project
- */
- // exports.onPreInit = () => console.log("Loaded gatsby-starter-plugin")
+let activeEnv =
+  process.env.GATSBY_ACTIVE_ENV || process.env.NODE_ENV || 'development'
 
+if (activeEnv == 'development') {
+  process.env.NODE_TLS_REJECT_UNAUTHORIZED = '0'
+}
 
-const axios = require('axios').default
+exports.sourceNodes = async (
+  { actions: { createNode }, createContentDigest, createNodeId },
+  { api }
+) => {
+  log(chalk.black.bgWhite(`Getting the data from ${api}`))
+  if (!api) {
+    log(
+      chalk.bgRed('You seem to be missing api details in your gatsby-config.js')
+    )
+    return
+  }
+  let result
 
-
-const POST_NODE_TYPE = `Location`
-
-$counter = 0;
-
-
-exports.sourceNodes = async ({
-    actions,
-    createContentDigest,
-    createNodeId,
-    getNodesByType,
-}) =>{
-const { createNode, touchNode, deleteNode } = actions
-const data = await axios.get("https://supernode.matchx.io/api/gateways-loc")
-$counter = 0
-
-const locations = data.data
-
-
-data.data.location.forEach(location =>
-    $counter++,
-    createNode({
-        
-        ...location,
-        id: createNodeId(`${POST_NODE_TYPE}-${counter}`),
-        parent: null,
-        children: [],
-        internal: {
-            type: POST_NODE_TYPE,
-            content: JSON.stringify(location),
-            contentDigest: createContentDigest(location),
-        },
+  try {
+    result = await axios.get(`${api}/api/gateways-loc`, {
+      responseType: 'json',
+      headers: { 'x-api-key': api },
     })
-    )}
+  } catch (err) {
+    log(chalk.bgRed('There was an error'))
+    log(err)
+  }
+
+  if (result.data) {
+    let count = 1
+    for (const [key, value] of Object.entries(result.data)) {
+      let locObj = result.data[key]
+
+      let count = 0
+
+      locObj.forEach((location) => {
+        count++
+        const nodeContent = JSON.stringify(location)
+        const nodeMeta = {
+          id: createNodeId(`mxcSupernode-${count}`),
+          parent: null,
+          children: [],
+          internal: {
+            type: `mxcSupernode`,
+            content: nodeContent,
+            contentDigest: createContentDigest(location),
+          },
+        }
+        const node = Object.assign({}, location, nodeMeta)
+        createNode(node)
+      })
+    }
+  }
+}
