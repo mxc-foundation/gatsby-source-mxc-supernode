@@ -5,10 +5,10 @@ Currently it only supports the Gateway Locations API.
 ## How to Install
 
 Using NPM:
-`npm install --save mxc-supernode-plugin`
+`npm install --save gatsby-source-mxc-supernode`
 
 Using Yarn:
-`yarn add mxc-supernode-plugin`
+`yarn add gatsby-source-mxc-supernode`
 
 ## Initial Setup
 
