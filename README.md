@@ -18,8 +18,8 @@ Go to your `gatsby-config.js` file and add the following to `plugins: []` :
     {
       resolve: `gatsby-source-mxc-supernode`,
       options: {
-        api: 'https://supernode.matchx.io/',
+        supernode: 'https://supernode.matchx.io',
       },
 ```
 
-`api` refers to the supernode URL from which you want to get the API.
+`supernode` refers to the supernode URL from which you want to get the API.
