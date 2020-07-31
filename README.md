@@ -20,6 +20,7 @@ Go to your `gatsby-config.js` file and add the following to `plugins: []` :
       options: {
         supernode: 'https://supernode.matchx.io',
       },
+    }
 ```
 
 `supernode` refers to the supernode URL from which you want to get the API.
