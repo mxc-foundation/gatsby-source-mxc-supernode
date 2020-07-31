@@ -36,7 +36,7 @@ exports.sourceNodes = async (
     let count = 1;
     for (const [key, value] of Object.entries(result.data)) {
       let locObj = result.data[key];
-      console.log(locObj);
+
       let count = 0;
 
       locObj.forEach((location) => {

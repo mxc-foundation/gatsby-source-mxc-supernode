@@ -1,6 +1,6 @@
 {
   "name": "gatsby-source-mxc-supernode",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "A plugin to pull data from MXC Supernodes and present it in GraphQL",
   "main": "index.js",
   "scripts": {
