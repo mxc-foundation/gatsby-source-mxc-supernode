@@ -15,12 +15,5 @@ Using Yarn:
 Go to your `gatsby-config.js` file and add the following to `plugins: []` :
 
 ```
-    {
-      resolve: `gatsby-source-mxc-supernode`,
-      options: {
-        supernode: 'https://supernode.matchx.io',
-      },
-    }
+    `gatsby-source-mxc-supernode`
 ```
-
-`supernode` refers to the supernode URL from which you want to get the API.
