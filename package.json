@@ -1,25 +1,25 @@
 {
-  "name": "gatsby-source-mxc-supernode",
-  "version": "2.0.0",
-  "description": "A plugin to pull data from MXC Supernodes and present it in GraphQL",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "echo \"No build script setup\""
-  },
-  "keywords": [
-    "gatsby",
-    "gatsby-plugin"
-  ],
-  "author": "MXC Foundation <hello@mxc.org>",
-  "license": "0BSD",
-  "dependencies": {
-    "axios": "^0.19.2",
-    "chalk": "^4.1.0",
-    "node-fetch": "^2.6.0",
-    "react-query": "^2.13.1"
-  },
-  "devDependencies": {
-    "prettier": "^2.1.1"
-  }
+    "name": "gatsby-source-mxc-supernode",
+    "version": "2.0.0",
+    "description": "A plugin to pull data from MXC Supernodes and present it in GraphQL",
+    "main": "index.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1",
+        "build": "echo \"No build script setup\"",
+        "format": "prettier --write \"**/*.{js,jsx,json,md}\""
+    },
+    "keywords": [
+        "gatsby",
+        "gatsby-plugin"
+    ],
+    "author": "MXC Foundation <hello@mxc.org>",
+    "license": "0BSD",
+    "dependencies": {
+        "axios": "^0.19.2",
+        "chalk": "^4.1.0",
+        "node-fetch": "^2.6.0"
+    },
+    "devDependencies": {
+        "prettier": "^2.1.1"
+    }
 }
