@@ -28,9 +28,7 @@ exports.sourceNodes = async (
         axios.get(`https://lora.hunanhuaweikeji.com/api/gateways-loc`),
         axios.get('https://mxcxy.com/api/gateways-loc'),
         axios.get('https://lora.rosanetworks.com/api/gateways-loc'),
-        axios.get('https://ausn.matchx.io'),
         axios.get('https://supernode.iot-ducapital.net'),
-        axios.get('https://ussn.matchx.io'),
         axios.get('https://k-supernode.com'),
     ]
 
