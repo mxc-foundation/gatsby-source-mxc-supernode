@@ -15,5 +15,10 @@ Using Yarn:
 Go to your `gatsby-config.js` file and add the following to `plugins: []` :
 
 ```
-    `gatsby-source-mxc-supernode`
+    {
+          resolve: `gatsby-source-mxc-supernode`,
+          options: {
+            supernode: [`https://lora.supernode.matchx.io`,`https://lora.hunanhuaweikeji.com`,'https://mxcxy.com','https://lora.rosanetworks.com','https://k-supernode.com'],
+          },
+        },
 ```

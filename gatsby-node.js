@@ -2,13 +2,6 @@ const axios = require('axios')
 const chalk = require('chalk')
 const log = console.log
 
-let activeEnv =
-    process.env.GATSBY_ACTIVE_ENV || process.env.NODE_ENV || 'development'
-
-if (activeEnv === 'development') {
-    process.env.NODE_TLS_REJECT_UNAUTHORIZED = '0'
-}
-
 exports.sourceNodes = async (
     { actions: { createNode }, createContentDigest, createNodeId },
     { supernode }
@@ -23,21 +16,20 @@ exports.sourceNodes = async (
         return
     }
 
-    let eachSupernode = [
-        axios.get(`https://lora.supernode.matchx.io/api/gateways-loc`),
-        axios.get(`https://lora.hunanhuaweikeji.com/api/gateways-loc`),
-        axios.get('https://mxcxy.com/api/gateways-loc'),
-        axios.get('https://lora.rosanetworks.com/api/gateways-loc'),
-        axios.get('https://supernode.iot-ducapital.net'),
-        axios.get('https://k-supernode.com'),
-    ]
+  // Get the Gateway Location API using Axios
+
+    const eachGatewayLocation = supernode.map(supernode => {
+        return axios.get(`${supernode}/api/gateways-loc`)
+    })
 
     const getData = await axios
-        .all(eachSupernode)
+        .all(eachGatewayLocation)
         .then((responses) => responses.map((resp) => resp.data.result || []))
         .catch(function (error) {
             console.log(error)
         })
+
+    // Create Nodes for Gateway Locations
 
     const result = getData.flat()
     if (result) {
