@@ -1,6 +1,7 @@
 const axios = require('axios')
 const chalk = require('chalk')
 const data = require('./globalLocations.json')
+const m2ProData = require('./m2ProLocations.json')
 
 const log = console.log
 
@@ -34,6 +35,20 @@ exports.sourceNodes = async (
     // Create Nodes for Gateway Locations
 
     const result = getData.flat()
+
+    // Introduce custom M2Pro File
+
+    console.log(m2ProData)
+
+    for (let i = 0; i < m2ProData.length; i++) {
+        m2ProData[i].location.latitude = +m2ProData[i].location.latitude
+        m2ProData[i].location.longitude = +m2ProData[i].location.longitude
+    }
+
+    for (let i = 0; i < m2ProData.length; i++) {
+        result.push(m2ProData[i])
+    }
+
 
     // Introduce external data file
 
